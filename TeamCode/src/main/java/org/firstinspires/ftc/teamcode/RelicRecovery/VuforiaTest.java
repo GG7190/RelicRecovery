@@ -76,8 +76,8 @@ package org.firstinspires.ftc.teamcode.RelicRecovery;
 //@Disabled
 public class VuforiaTest extends LinearOpMode {
 
-    public Servo vtest;
-    public ServoController test;
+    //public Servo vtest;
+    //public ServoController test;
 
     public static final String TAG = "Vuforia VuMark Sample";
 
@@ -91,12 +91,12 @@ public class VuforiaTest extends LinearOpMode {
 
     @Override public void runOpMode() {
 
-        vtest = hardwareMap.servo.get("vtest");
-        test = hardwareMap.servoController.get("test");
+        //vtest = hardwareMap.servo.get("vtest");
+        //test = hardwareMap.servoController.get("test");
 
-        final double SERVO1_MIN_RANGE = 0.05;
-        final double SERVO1_MID_RANGE = 0.40;
-        final double SERVO1_MAX_RANGE = 0.90;
+        //final double SERVO1_MIN_RANGE = 0.05;
+        //final double SERVO1_MID_RANGE = 0.40;
+        //final double SERVO1_MAX_RANGE = 0.90;
 
 
 
@@ -164,7 +164,7 @@ public class VuforiaTest extends LinearOpMode {
                  * on which VuMark was visible. */
                 telemetry.addData("VuMark", "%s visible", vuMark);
 
-                if(vuMark == RelicRecoveryVuMark.RIGHT) {
+                /*if(vuMark == RelicRecoveryVuMark.RIGHT) {
                     vtest.setPosition(SERVO1_MIN_RANGE);
                 }
 
@@ -174,7 +174,7 @@ public class VuforiaTest extends LinearOpMode {
 
                 if(vuMark == RelicRecoveryVuMark.LEFT){
                     vtest.setPosition(SERVO1_MAX_RANGE);
-                }
+                } */
 
                 /* For fun, we also exhibit the navigational pose. In the Relic Recovery game,
                  * it is perhaps unlikely that you will actually need to act on this pose information, but
