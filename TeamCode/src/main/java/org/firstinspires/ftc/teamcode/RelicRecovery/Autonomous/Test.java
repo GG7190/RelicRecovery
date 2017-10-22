@@ -7,6 +7,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorController;
 
 import org.firstinspires.ftc.teamcode.RelicRecovery.GGCoreFunctions;
 import org.firstinspires.ftc.teamcode.RelicRecovery.GGHardware;
@@ -16,11 +17,16 @@ import org.firstinspires.ftc.teamcode.RelicRecovery.GGHardware;
 public class Test extends LinearOpMode
 {
 
-    GGHardware robot           = new GGHardware();
+    public DcMotor motor1;
+    public DcMotorController motors;
+    //GGHardware robot           = new GGHardware();
 
     @Override
     public void runOpMode() {
-        robot.init(hardwareMap);
+        //robot.init(hardwareMap);
+
+        motor1 = hardwareMap.dcMotor.get("motor1");
+        motors = hardwareMap.dcMotorController.get("motors");
 
         boolean finished = false;
 
@@ -48,12 +54,10 @@ public class Test extends LinearOpMode
 
     public void forwBackw(double motorPwr)
     {
-        robot.frontright.setPower(motorPwr);
-        robot.frontleft.setPower(motorPwr);
-        robot.backright.setPower(motorPwr);
-        robot.backleft.setPower(motorPwr);
+        motor1.setPower(motorPwr);
     }
 
+    /*
     public void driftRight()
     {
         robot.frontright.setPower(1);
@@ -86,7 +90,7 @@ public class Test extends LinearOpMode
         robot.backright.setPower(-1);
         robot.backleft.setPower(1);
     }
-
+*/
 
     public void runEncodersUntil(int encoderAmount)
     {
@@ -94,7 +98,7 @@ public class Test extends LinearOpMode
 
         while(!reachedPosition)
         {
-            if(Math.abs(robot.backleft.getCurrentPosition()) > encoderAmount)
+            if(Math.abs(motor1.getCurrentPosition()) > encoderAmount)
             {
                 reachedPosition = true;
             }
@@ -109,14 +113,14 @@ public class Test extends LinearOpMode
     public void resetEncoders()
     {
 
-        robot.backleft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+        motor1.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
     }
 
     public void runWithEncoders()
     {
-        if(robot.backleft != null)
+        if(motor1 != null)
         {
-            robot.backleft.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            motor1.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         }
     }
 }
