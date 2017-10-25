@@ -18,17 +18,17 @@ import com.qualcomm.robotcore.util.Range;
 public class GGHardware
 {
 
-    public final double CLAW1_MIN_RANGE = 0.10;
-    public final double CLAW1_MID_RANGE = 0.45;
-    public final double CLAW1_MAX_RANGE = 0.90;
-    public final double CLAW2_MIN_RANGE = 0.90;
-    public final double CLAW2_MID_RANGE = 0.45;
-    public final double CLAW2_MAX_RANGE = 0.10;
+    public final double PIVOT_MIN_RANGE = 0.00;
+    public final double PIVOT_MID_RANGE = 0.45;
+    public final double PIVOT_MAX_RANGE = 0.95;
+    public final double CLAW_MIN_RANGE = 0.90;
+    public final double CLAW_MID_RANGE = 0.45;
+    public final double CLAW_MAX_RANGE = 0.10;
 
-    public DcMotor frontleft, frontright, backleft, backright ,lift1, lift2;
-    public DcMotorController fdrive, bdrive, lift;
-    public ServoController claw;
-    public Servo claw1, claw2;
+    public DcMotor frontleft, frontright, backleft, backright ,lift1, lift2, belt1, belt2;
+    public DcMotorController fdrive, bdrive, lift, attatchment;
+    public ServoController Servo;
+    public Servo pivot, claw;
     public float x, y, z, w, pwr;
     public static double deadzone = 0.2;
     /* local OpMode members. */
@@ -46,16 +46,19 @@ public class GGHardware
         hwMap = ahwMap;
         fdrive = hwMap.dcMotorController.get("fdrive");
         frontleft = hwMap.dcMotor.get("fleft"); //3
-        frontright = hwMap.dcMotor.get("fright"); //4
+        frontright = hwMap.dcMotor.get("fright"); //2
         bdrive = hwMap.dcMotorController.get("bdrive");
-        backleft = hwMap.dcMotor.get("bleft"); //2
+        backleft = hwMap.dcMotor.get("bleft"); //4
         backright = hwMap.dcMotor.get("bright"); //1
-        claw = hwMap.servoController.get("claw");
-        claw1 = hwMap.servo.get("claw1");
-        claw2 = hwMap.servo.get("claw2");
+        Servo = hwMap.servoController.get("claw");
+        pivot = hwMap.servo.get("pivot");
+        //claw = hwMap.servo.get("claw");
         lift = hwMap.dcMotorController.get("lift");
         lift1 = hwMap.dcMotor.get("lift1");
-        //lift2 = hardwareMap.dcMotor.get("lift2");
+        //lift2 = hwMap.dcMotor.get("lift2");
+        attatchment = hwMap.dcMotorController.get("attachment");
+        belt1 = hwMap.dcMotor.get("belt1");
+        belt2 = hwMap.dcMotor.get("belt2");
 
         frontleft.setDirection(DcMotor.Direction.REVERSE);
         backleft.setDirection(DcMotor.Direction.REVERSE);

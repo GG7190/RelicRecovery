@@ -45,7 +45,6 @@ public class Parkrb1 extends LinearOpMode
 
 
 
-
     public void forwBackw(double motorPwr)
     {
         robot.frontright.setPower(motorPwr);
@@ -53,6 +52,7 @@ public class Parkrb1 extends LinearOpMode
         robot.backright.setPower(motorPwr);
         robot.backleft.setPower(motorPwr);
     }
+
 
     public void driftRight()
     {
@@ -108,7 +108,6 @@ public class Parkrb1 extends LinearOpMode
 
     public void resetEncoders()
     {
-
         robot.backleft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
     }
 

@@ -29,33 +29,50 @@ public class MechDrive extends LinearOpMode {
 
             robot.pwr = robot.y; //this can be tweaked for exponential power increase
 
-            robot.frontright.setPower(Range.clip(robot.pwr - robot.x + robot.z, -1, 1));
+            robot.frontright.setPower(-Range.clip(robot.pwr - robot.x + robot.z, -1, 1));
             robot.backleft.setPower(Range.clip(robot.pwr - robot.x - robot.z, -1, 1));
             robot.frontleft.setPower(Range.clip(robot.pwr + robot.x - robot.z, -1, 1));
             robot.backright.setPower(Range.clip(robot.pwr + robot.x + robot.z, -1, 1));
 
 
-            if (gamepad2.x) {
-                robot.claw1.setPosition(robot.CLAW1_MAX_RANGE);
-                robot.claw2.setPosition(robot.CLAW2_MAX_RANGE);
+            if (gamepad2.left_bumper) {
+                robot.pivot.setPosition(robot.PIVOT_MAX_RANGE);
+                //robot.claw.setPosition(robot.CLAW_MAX_RANGE);
 
             }
-            if (gamepad2.b) {
-                robot.claw1.setPosition(robot.CLAW1_MIN_RANGE);
-                robot.claw2.setPosition(robot.CLAW2_MIN_RANGE);
+            if (gamepad2.right_bumper) {
+                robot.pivot.setPosition(robot.PIVOT_MIN_RANGE);
+                //robot.claw.setPosition(robot.CLAW_MIN_RANGE);
 
             }
             if (gamepad2.y) {
-                robot.lift1.setPower(.5);
+                robot.lift1.setPower(1);
                 //lift2.setPower(.9);
             }
             if (gamepad2.a) {
-                robot.lift1.setPower(-.5);
+                robot.lift1.setPower(-1);
                 //lift2.setPower(-.9);
             }
             else
             {
                 robot.lift1.setPower(0);
+            }
+
+            boolean belt = false;
+            if (gamepad2.x)
+            {
+                robot.belt1.setPower(1);
+                robot.belt2.setPower(-1);
+            }
+            else if (gamepad2.b)
+            {
+                robot.belt1.setPower(-0.5);
+                robot.belt2.setPower(0.5);
+            }
+            else
+            {
+                robot.belt1.setPower(0);
+                robot.belt2.setPower(0);
             }
         }
     }
